@@ -1,0 +1,11 @@
+# Data lives outside git — multi-GB archives and extracted frames.
+/data/
+# Python
+.venv/
+__pycache__/
+*.pyc
+# Checkpoints are large; results/ (metrics, figures, summaries) IS tracked.
+/checkpoints/
+*.pth
+*.onnx
+*.engine
