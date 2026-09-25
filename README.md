@@ -63,13 +63,57 @@ self-occlusion case an excavator has and a car does not.
    camera+lidar stack would suffer: the archives ship no camera extrinsics, so true
    early-fusion calibration studies are not possible on this release.
 
+## The result so far
+
+The published PTv3 checkpoint scores **0.7830 mIoU** over all 1,368 validation
+frames here (single forward pass; the published 0.8096 uses 10-way test-time
+augmentation — see the caveat below). Sliced by the platform the frames came from,
+the same predictions read:
+
+| platform | mIoU | mAcc | allAcc | points |
+|---|---|---|---|---|
+| `vehicle` — offroad vehicle | **0.7968** | 0.8632 | 0.9281 | 174.9 M |
+| `spot` — quadruped | 0.7113 | 0.8091 | 0.8003 | 18.0 M |
+| `alice` — **Liebherr R924 excavator** | **0.6040** | 0.6812 | 0.9010 | 51.5 M |
+
+**The headline number is the vehicle talking.** It contributes 72% of the validation
+points, and the excavator sits 19 mIoU points below it — on a checkpoint whose own
+config trains on `["train", "trainEx"]`, so excavator frames were *in the training
+set*. This is not a zero-shot transfer gap.
+
+Two classes account for almost all of it:
+
+| class | excavator IoU | excavator points | vehicle IoU |
+|---|---|---|---|
+| `obstacle` | **0.060** | 3,145,603 (6.1%) | 0.660 |
+| `artificial_ground` | **0.013** | 783,447 (1.5%) | 0.737 |
+| `natural_ground` | 0.882 | 31,077,410 (60.4%) | 0.797 |
+
+Neither is starved of support — three million labelled obstacle points is not a
+small-sample artifact. The confusion matrix says exactly what happens instead:
+
+| from the excavator | predicted as |
+|---|---|
+| `obstacle` | **natural_ground 89%**, obstacle 7%, vegetation 2% |
+| `artificial_ground` | **natural_ground 98%**, artificial_ground 1% |
+
+From the same viewpoint the vehicle keeps 79% of its obstacle points and 81% of its
+artificial ground. **Seen from an excavator's mast, the model flattens obstacles and
+made ground into dirt** — it holds on to the dominant class (soil, 60% of returns, IoU
+0.88) and loses the two classes a machine that digs has the most reason to care about.
+
+Caveat on the anchor: this run uses a single forward pass, not the baseline's 10-way
+TTA, so 0.7830 is not a like-for-like reproduction of 0.8096. The platform *gap* is
+measured within one protocol and does not depend on that difference, but quantifying
+the TTA delta is the next thing on the list.
+
 ## Status
 
 | Phase | State |
 |---|---|
 | 0 · inventory the data, verify formats and label pairing | **done** |
-| 1 · reproduce the published baseline, slice by platform | running |
-| 2 · degradation sweep on the excavator frames | queued behind phase 1 |
+| 1 · reproduce the published baseline, slice by platform | **done** — see above |
+| 2 · degradation sweep on the excavator frames | running |
 | 3 · a deployable model + TensorRT/Jetson latency budget | planned |
 
 ## Layout

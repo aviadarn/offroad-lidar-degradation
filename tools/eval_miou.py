@@ -61,6 +61,23 @@ def iou_from_conf(conf: np.ndarray):
     return iou, acc
 
 
+def top_confusions(conf: np.ndarray, eval_classes, k: int = 3) -> dict:
+    """For each class, where its points actually went. IoU says a class failed;
+    this says what the model called it instead, which is the part you can act on."""
+    out = {}
+    for c in eval_classes:
+        row = conf[c].astype(np.float64)
+        total = row.sum()
+        if total == 0:
+            continue
+        order = np.argsort(-row)
+        out[CLASS_NAMES[c]] = [
+            {"predicted": CLASS_NAMES[j], "share": round(float(row[j] / total), 4)}
+            for j in order[:k] if row[j] > 0
+        ]
+    return out
+
+
 def summarize(conf: np.ndarray, eval_classes) -> dict:
     iou, acc = iou_from_conf(conf)
     sel = [c for c in eval_classes if not np.isnan(iou[c])]
@@ -71,6 +88,7 @@ def summarize(conf: np.ndarray, eval_classes) -> dict:
         "mAcc": float(np.mean([acc[c] for c in sel])) if sel else float("nan"),
         "allAcc": float(np.diag(conf).sum() / total) if total else float("nan"),
         "classes_present": len(sel),
+        "confusions": top_confusions(conf, eval_classes),
         "per_class": {
             CLASS_NAMES[c]: {
                 "iou": None if np.isnan(iou[c]) else round(float(iou[c]), 5),
