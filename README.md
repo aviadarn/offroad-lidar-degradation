@@ -107,14 +107,59 @@ TTA, so 0.7830 is not a like-for-like reproduction of 0.8096. The platform *gap*
 measured within one protocol and does not depend on that difference, but quantifying
 the TTA delta is the next thing on the list.
 
+## What breaks it, and what does not
+
+Seventeen conditions, applied to the 192 excavator frames only, scored with the same
+checkpoint and the same single-pass protocol. Clean excavator baseline is 0.6040.
+
+![degradation](results/figures/degradation.png)
+
+| condition | level | mIoU | delta |
+|---|---|---|---|
+| **dust** | 2% of returns | **0.4884** | **−0.116** |
+| | 5% | 0.4669 | −0.137 |
+| | 10% | 0.4489 | −0.155 |
+| **range noise** | σ = 2 cm | 0.5932 | −0.011 |
+| | σ = 5 cm | 0.5473 | −0.057 |
+| | σ = 10 cm | 0.4640 | −0.140 |
+| **dead beams** | 10% | 0.5905 | −0.014 |
+| | 25% | 0.5690 | −0.035 |
+| | 50% | 0.4696 | −0.134 |
+| rain | strong (28% of returns lost) | 0.5724 | −0.032 |
+| reflectivity gain error | +50% | 0.5716 | −0.032 |
+| **mount drift** | 0.25° – 2.0° | 0.610 – 0.604 | **≈ 0** |
+
+Three things worth taking away:
+
+1. **Dust is the expensive one, and it is cheap to cause.** Corrupting **2%** of returns
+   costs 0.116 mIoU — about the same as killing **half the sensor's beams** (0.134). The
+   curve has its knee immediately: going from 2% to 10% dust costs only another 0.04. For
+   a machine whose work throws dust continuously, the first sliver matters most.
+
+2. **Mount drift does nothing.** Rotating the whole cloud by up to 2°, the way a sensor
+   mast shifts on a machine that vibrates all day, leaves the score flat — and slightly
+   *above* baseline at small angles, which is noise. The failure mode I built this sweep
+   to catch is not a failure mode. That is worth knowing before anyone spends engineering
+   effort on mount rigidity for this kind of model.
+
+3. **Graceful where you would want it to be brittle, brittle where you would want grace.**
+   Losing a quarter of the beams costs 0.035. Ranging jitter of 10 cm costs 0.140. The
+   model leans on geometry precision far more than on point count.
+
+Every condition is seeded per file, so `tools/degrade.py` reproduces the exact clouds
+scored here. Raw numbers: [`results/sweep/`](results/sweep/) and
+[`results/figures/degradation.csv`](results/figures/degradation.csv).
+
 ## Status
 
 | Phase | State |
 |---|---|
 | 0 · inventory the data, verify formats and label pairing | **done** |
-| 1 · reproduce the published baseline, slice by platform | **done** — see above |
-| 2 · degradation sweep on the excavator frames | running |
+| 1 · reproduce the published baseline, slice by platform | **done** |
+| 2 · degradation sweep on the excavator frames | **done** — 17 conditions |
 | 3 · a deployable model + TensorRT/Jetson latency budget | planned |
+
+Total rented-GPU cost for phases 0-2: under $3.
 
 ## Layout
 

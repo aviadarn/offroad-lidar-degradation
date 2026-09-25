@@ -1,0 +1,800 @@
+{
+  "gt_root": "/workspace/sweep/rain_0.25/labels_challenge/val",
+  "pred_root": "/workspace/Pointcept/exp/goose/sweep-rain_0.25/result",
+  "frames_total": 192,
+  "frames_evaluated": 192,
+  "frames_missing": 0,
+  "frames_mismatched": 0,
+  "ignored_classes": [],
+  "overall": {
+    "points": 47890398,
+    "mIoU": 0.608831074642469,
+    "mAcc": 0.6886400126915002,
+    "allAcc": 0.9035161077592214,
+    "classes_present": 8,
+    "confusions": {
+      "other": [
+        {
+          "predicted": "other",
+          "share": 0.9434
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.0319
+        },
+        {
+          "predicted": "vegetation",
+          "share": 0.0079
+        }
+      ],
+      "artificial_structures": [
+        {
+          "predicted": "artificial_structures",
+          "share": 0.966
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.0147
+        },
+        {
+          "predicted": "vegetation",
+          "share": 0.0123
+        }
+      ],
+      "artificial_ground": [
+        {
+          "predicted": "natural_ground",
+          "share": 0.9887
+        },
+        {
+          "predicted": "artificial_ground",
+          "share": 0.0085
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.002
+        }
+      ],
+      "natural_ground": [
+        {
+          "predicted": "natural_ground",
+          "share": 0.9924
+        },
+        {
+          "predicted": "other",
+          "share": 0.0027
+        },
+        {
+          "predicted": "artificial_ground",
+          "share": 0.0026
+        }
+      ],
+      "obstacle": [
+        {
+          "predicted": "natural_ground",
+          "share": 0.8994
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.0685
+        },
+        {
+          "predicted": "vegetation",
+          "share": 0.0186
+        }
+      ],
+      "vehicle": [
+        {
+          "predicted": "vehicle",
+          "share": 0.8159
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.108
+        },
+        {
+          "predicted": "vegetation",
+          "share": 0.0448
+        }
+      ],
+      "vegetation": [
+        {
+          "predicted": "vegetation",
+          "share": 0.897
+        },
+        {
+          "predicted": "natural_ground",
+          "share": 0.0889
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.0136
+        }
+      ],
+      "human": [
+        {
+          "predicted": "human",
+          "share": 0.8174
+        },
+        {
+          "predicted": "obstacle",
+          "share": 0.1053
+        },
+        {
+          "predicted": "vehicle",
+          "share": 0.0292
+        }
+      ]
+    },
+    "per_class": {
+      "other": {
+        "iou": 0.93584,
+        "acc": 0.9434,
+        "gt_points": 12741856
+      },
+      "artificial_structures": {
+        "iou": 0.77483,
+        "acc": 0.96603,
+        "gt_points": 276287
+      },
+      "artificial_ground": {
+        "iou": 0.00764,
+        "acc": 0.00846,
+        "gt_points": 706782
+      },
+      "natural_ground": {
+        "iou": 0.88343,
+        "acc": 0.99244,
+        "gt_points": 28908348
+      },
+      "obstacle": {
+        "iou": 0.05842,
+        "acc": 0.06849,
+        "gt_points": 2900983
+      },
+      "vehicle": {
+        "iou": 0.59264,
+        "acc": 0.81587,
+        "gt_points": 266378
+      },
+      "vegetation": {
+        "iou": 0.81495,
+        "acc": 0.897,
+        "gt_points": 2036884
+      },
+      "human": {
+        "iou": 0.8029,
+        "acc": 0.81742,
+        "gt_points": 52880
+      }
+    }
+  },
+  "by_platform": {
+    "alice": {
+      "points": 47890398,
+      "mIoU": 0.608831074642469,
+      "mAcc": 0.6886400126915002,
+      "allAcc": 0.9035161077592214,
+      "classes_present": 8,
+      "confusions": {
+        "other": [
+          {
+            "predicted": "other",
+            "share": 0.9434
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0319
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0079
+          }
+        ],
+        "artificial_structures": [
+          {
+            "predicted": "artificial_structures",
+            "share": 0.966
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0147
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0123
+          }
+        ],
+        "artificial_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9887
+          },
+          {
+            "predicted": "artificial_ground",
+            "share": 0.0085
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.002
+          }
+        ],
+        "natural_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9924
+          },
+          {
+            "predicted": "other",
+            "share": 0.0027
+          },
+          {
+            "predicted": "artificial_ground",
+            "share": 0.0026
+          }
+        ],
+        "obstacle": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.8994
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0685
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0186
+          }
+        ],
+        "vehicle": [
+          {
+            "predicted": "vehicle",
+            "share": 0.8159
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.108
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0448
+          }
+        ],
+        "vegetation": [
+          {
+            "predicted": "vegetation",
+            "share": 0.897
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0889
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0136
+          }
+        ],
+        "human": [
+          {
+            "predicted": "human",
+            "share": 0.8174
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.1053
+          },
+          {
+            "predicted": "vehicle",
+            "share": 0.0292
+          }
+        ]
+      },
+      "per_class": {
+        "other": {
+          "iou": 0.93584,
+          "acc": 0.9434,
+          "gt_points": 12741856
+        },
+        "artificial_structures": {
+          "iou": 0.77483,
+          "acc": 0.96603,
+          "gt_points": 276287
+        },
+        "artificial_ground": {
+          "iou": 0.00764,
+          "acc": 0.00846,
+          "gt_points": 706782
+        },
+        "natural_ground": {
+          "iou": 0.88343,
+          "acc": 0.99244,
+          "gt_points": 28908348
+        },
+        "obstacle": {
+          "iou": 0.05842,
+          "acc": 0.06849,
+          "gt_points": 2900983
+        },
+        "vehicle": {
+          "iou": 0.59264,
+          "acc": 0.81587,
+          "gt_points": 266378
+        },
+        "vegetation": {
+          "iou": 0.81495,
+          "acc": 0.897,
+          "gt_points": 2036884
+        },
+        "human": {
+          "iou": 0.8029,
+          "acc": 0.81742,
+          "gt_points": 52880
+        }
+      }
+    }
+  },
+  "by_scenario": {
+    "alice_scenario02": {
+      "points": 18331409,
+      "mIoU": 0.5517865317492419,
+      "mAcc": 0.6930923105515977,
+      "allAcc": 0.9248532941466747,
+      "classes_present": 8,
+      "confusions": {
+        "other": [
+          {
+            "predicted": "other",
+            "share": 0.9094
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0556
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0117
+          }
+        ],
+        "artificial_structures": [
+          {
+            "predicted": "artificial_structures",
+            "share": 0.9708
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0123
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0103
+          }
+        ],
+        "artificial_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9896
+          },
+          {
+            "predicted": "artificial_ground",
+            "share": 0.0085
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.001
+          }
+        ],
+        "natural_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9971
+          },
+          {
+            "predicted": "other",
+            "share": 0.0013
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0009
+          }
+        ],
+        "obstacle": [
+          {
+            "predicted": "obstacle",
+            "share": 0.8354
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0882
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0534
+          }
+        ],
+        "vehicle": [
+          {
+            "predicted": "vehicle",
+            "share": 0.8154
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.1564
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0098
+          }
+        ],
+        "vegetation": [
+          {
+            "predicted": "vegetation",
+            "share": 0.9031
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0827
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0138
+          }
+        ],
+        "human": [
+          {
+            "predicted": "vegetation",
+            "share": 0.7746
+          },
+          {
+            "predicted": "human",
+            "share": 0.1051
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0878
+          }
+        ]
+      },
+      "per_class": {
+        "other": {
+          "iou": 0.90656,
+          "acc": 0.90943,
+          "gt_points": 4533288
+        },
+        "artificial_structures": {
+          "iou": 0.81109,
+          "acc": 0.97084,
+          "gt_points": 264647
+        },
+        "artificial_ground": {
+          "iou": 0.00849,
+          "acc": 0.00849,
+          "gt_points": 704466
+        },
+        "natural_ground": {
+          "iou": 0.91849,
+          "acc": 0.99705,
+          "gt_points": 10623122
+        },
+        "obstacle": {
+          "iou": 0.28093,
+          "acc": 0.83541,
+          "gt_points": 150869
+        },
+        "vehicle": {
+          "iou": 0.51348,
+          "acc": 0.81537,
+          "gt_points": 48763
+        },
+        "vegetation": {
+          "iou": 0.87019,
+          "acc": 0.90309,
+          "gt_points": 2004750
+        },
+        "human": {
+          "iou": 0.10505,
+          "acc": 0.10505,
+          "gt_points": 1504
+        }
+      }
+    },
+    "alice_scenario06": {
+      "points": 13364503,
+      "mIoU": 0.4561222220687147,
+      "mAcc": 0.5831856088068257,
+      "allAcc": 0.9807910552304114,
+      "classes_present": 8,
+      "confusions": {
+        "other": [
+          {
+            "predicted": "other",
+            "share": 0.9836
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0085
+          },
+          {
+            "predicted": "vehicle",
+            "share": 0.004
+          }
+        ],
+        "artificial_structures": [
+          {
+            "predicted": "artificial_structures",
+            "share": 0.8567
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.1135
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0124
+          }
+        ],
+        "artificial_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.709
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.2893
+          },
+          {
+            "predicted": "artificial_structures",
+            "share": 0.0013
+          }
+        ],
+        "natural_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9869
+          },
+          {
+            "predicted": "artificial_ground",
+            "share": 0.0072
+          },
+          {
+            "predicted": "other",
+            "share": 0.0039
+          }
+        ],
+        "obstacle": [
+          {
+            "predicted": "obstacle",
+            "share": 0.5944
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.2668
+          },
+          {
+            "predicted": "artificial_structures",
+            "share": 0.1068
+          }
+        ],
+        "vehicle": [
+          {
+            "predicted": "vehicle",
+            "share": 0.6718
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.1838
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0945
+          }
+        ],
+        "vegetation": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.35
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.3045
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.2136
+          }
+        ],
+        "human": [
+          {
+            "predicted": "obstacle",
+            "share": 0.4064
+          },
+          {
+            "predicted": "human",
+            "share": 0.358
+          },
+          {
+            "predicted": "vehicle",
+            "share": 0.1503
+          }
+        ]
+      },
+      "per_class": {
+        "other": {
+          "iou": 0.97091,
+          "acc": 0.98356,
+          "gt_points": 3057647
+        },
+        "artificial_structures": {
+          "iou": 0.38487,
+          "acc": 0.8567,
+          "gt_points": 11640
+        },
+        "artificial_ground": {
+          "iou": 1e-05,
+          "acc": 0.00043,
+          "gt_points": 2316
+        },
+        "natural_ground": {
+          "iou": 0.98211,
+          "acc": 0.98694,
+          "gt_points": 10105779
+        },
+        "obstacle": {
+          "iou": 0.37126,
+          "acc": 0.59442,
+          "gt_points": 78642
+        },
+        "vehicle": {
+          "iou": 0.58149,
+          "acc": 0.67175,
+          "gt_points": 99182
+        },
+        "vegetation": {
+          "iou": 0.00274,
+          "acc": 0.21364,
+          "gt_points": 220
+        },
+        "human": {
+          "iou": 0.35558,
+          "acc": 0.35805,
+          "gt_points": 9077
+        }
+      }
+    },
+    "alice_scenario08": {
+      "points": 16194486,
+      "mIoU": 0.42181776223966577,
+      "mAcc": NaN,
+      "allAcc": 0.8155922330600675,
+      "classes_present": 8,
+      "confusions": {
+        "other": [
+          {
+            "predicted": "other",
+            "share": 0.9494
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.028
+          },
+          {
+            "predicted": "vehicle",
+            "share": 0.0105
+          }
+        ],
+        "natural_ground": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9933
+          },
+          {
+            "predicted": "other",
+            "share": 0.003
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0024
+          }
+        ],
+        "obstacle": [
+          {
+            "predicted": "natural_ground",
+            "share": 0.9639
+          },
+          {
+            "predicted": "vegetation",
+            "share": 0.0166
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0097
+          }
+        ],
+        "vehicle": [
+          {
+            "predicted": "vehicle",
+            "share": 0.9368
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0246
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0184
+          }
+        ],
+        "vegetation": [
+          {
+            "predicted": "vegetation",
+            "share": 0.5193
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.4773
+          },
+          {
+            "predicted": "other",
+            "share": 0.0032
+          }
+        ],
+        "human": [
+          {
+            "predicted": "human",
+            "share": 0.9413
+          },
+          {
+            "predicted": "obstacle",
+            "share": 0.0413
+          },
+          {
+            "predicted": "natural_ground",
+            "share": 0.0112
+          }
+        ]
+      },
+      "per_class": {
+        "other": {
+          "iou": 0.94055,
+          "acc": 0.94945,
+          "gt_points": 5150921
+        },
+        "artificial_structures": {
+          "iou": 0.0,
+          "acc": null,
+          "gt_points": 0
+        },
+        "artificial_ground": {
+          "iou": 0.0,
+          "acc": null,
+          "gt_points": 0
+        },
+        "natural_ground": {
+          "iou": 0.75307,
+          "acc": 0.99326,
+          "gt_points": 8179447
+        },
+        "obstacle": {
+          "iou": 0.00917,
+          "acc": 0.0097,
+          "gt_points": 2671472
+        },
+        "vehicle": {
+          "iou": 0.63503,
+          "acc": 0.93677,
+          "gt_points": 118433
+        },
+        "vegetation": {
+          "iou": 0.11487,
+          "acc": 0.51927,
+          "gt_points": 31914
+        },
+        "human": {
+          "iou": 0.92186,
+          "acc": 0.94132,
+          "gt_points": 42299
+        }
+      }
+    }
+  }
+}
