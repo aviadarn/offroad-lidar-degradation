@@ -100,6 +100,16 @@ results/                   measurements, as they land
 - Pointcept's tester **reuses an existing `<name>_pred.npy`** instead of recomputing
   it. Every condition in a sweep needs its own experiment directory, or every curve
   comes out flat.
+- **Pin `numpy<2`.** spconv 2.3.6 and cumm 0.4.11 are built against the numpy 1.x C
+  ABI. Under numpy 2.x the first sparse convolution dies with a bare
+  `Floating point exception` — SIGFPE inside `cumm.tensorview.from_numpy`, no Python
+  traceback, no message. Installing `torch-geometric` or `torch-scatter` is enough to
+  pull numpy 2 in, so the pin has to be re-asserted after the dependency install.
+- Pointcept v1.5's config dump calls `yapf.FormatCode(..., verify=True)`; `verify` was
+  removed in yapf 0.40, so a fresh environment needs `yapf==0.32.0`.
+- The stock `pytorch/pytorch` images need `torch-scatter` (from the PyG wheel index),
+  `spconv-cu120`, `torch-geometric` and `pointops` (compiled for the rented GPU's
+  arch) before the tester will import.
 
 ## Credit
 

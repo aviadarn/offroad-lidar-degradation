@@ -11,7 +11,7 @@ The shipped config tests on ["test","testEx"], which has no public labels, with 
              tool for a degradation sweep where what matters is the delta between
              conditions measured the same way, not the absolute best number.
 """
-import argparse, re
+import argparse, ast
 from pathlib import Path
 
 SINGLE_AUG = """            aug_transform=[
@@ -20,14 +20,40 @@ SINGLE_AUG = """            aug_transform=[
 """
 
 
+def replace_aug_transform(src: str, replacement: str) -> str:
+    """Swap the whole aug_transform=[...] block for a single-pass one.
+
+    The block spans ten multi-line entries, so it is located by matching brackets
+    from its opening '[' rather than by searching for a closing line — a naive slice
+    cuts mid-expression and produces a config that only fails once the GPU is already
+    rented, which is exactly what happened the first time.
+    """
+    key = "aug_transform=["
+    start = src.index(key)
+    depth, i = 0, start + len(key) - 1
+    while i < len(src):
+        if src[i] == "[":
+            depth += 1
+        elif src[i] == "]":
+            depth -= 1
+            if depth == 0:
+                break
+        i += 1
+    else:
+        raise SystemExit("aug_transform block never closes")
+    end = i + 1
+    while end < len(src) and src[end] in ",\n":       # take the trailing comma/newline too
+        end += 1
+    line_start = src.rindex("\n", 0, start) + 1
+    return src[:line_start] + replacement + src[end:]
+
+
 def patch(src: str, split: str, single_pass: bool) -> str:
     out = src.replace('split=["test","testEx"],', f'split=["{split}"],')
     if out == src:
         raise SystemExit("test split line not found - upstream config changed")
     if single_pass:
-        start = out.index("            aug_transform=[")
-        end = out.index("            ],\n", out.index("RandomFlip", start)) + len("            ],\n")
-        out = out[:start] + SINGLE_AUG + out[end:]
+        out = replace_aug_transform(out, SINGLE_AUG)
     return out
 
 
@@ -41,9 +67,18 @@ def main() -> None:
     src = (args.configs / f"{args.base}.py").read_text()
     for name, single in ((f"{args.base}-{args.split}-tta", False), (f"{args.base}-{args.split}-fast", True)):
         dst = args.configs / f"{name}.py"
-        dst.write_text(patch(src, args.split, single))
-        n_aug = len(re.findall(r"\[dict\(type=\"RandomScale\"", dst.read_text().split("aug_transform=[")[1]))
-        print(f"wrote {dst}  ({n_aug} augmentation pass{'es' if n_aug > 1 else ''})")
+        text = patch(src, args.split, single)
+        # Parse before writing: a broken config otherwise surfaces only after the box
+        # has loaded the model. Count the augmentation passes from the AST, not a regex.
+        tree = ast.parse(text)
+        n_aug = max(
+            (len(node.value.elts) for node in ast.walk(tree)
+             if isinstance(node, ast.keyword) and node.arg == "aug_transform"
+             and isinstance(node.value, ast.List)),
+            default=0,
+        )
+        dst.write_text(text)
+        print(f"wrote {dst}  ({n_aug} augmentation pass{'es' if n_aug != 1 else ''})")
 
 
 if __name__ == "__main__":
