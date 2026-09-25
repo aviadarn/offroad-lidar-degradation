@@ -2,9 +2,9 @@
 """Confusion-matrix mIoU for GOOSE 3D challenge predictions, sliced by platform.
 
 Ground truth and predictions are both SemanticKITTI-style .label files: uint32 per
-point, semantic id in the low 16 bits. The challenge taxonomy is 9 keys (0-8); class
-8 (sky) never occurs in lidar returns, so by default it is dropped from the mean the
-same way the Pointcept baseline config does (num_classes=8).
+point, semantic id in the low 16 bits. The challenge taxonomy is 9 keys (0-8). The Pointcept baseline maps sky (8) into
+other (0) and trains on 8 classes; this tool applies the same remap to both sides by
+default so its numbers are directly comparable to the published baseline.
 
 Slices come from the scenario directory name: everything before "_scenario" is the
 platform (alice = Liebherr R924 excavator, spot = quadruped, otherwise the GOOSE
@@ -32,8 +32,18 @@ def platform_of(scenario: str) -> str:
     return "vehicle"
 
 
-def read_labels(path: Path) -> np.ndarray:
-    return (np.fromfile(path, dtype=np.uint32) & 0xFFFF).astype(np.int64)
+def read_labels(path: Path, sky_remap: bool = True) -> np.ndarray:
+    lab = (np.fromfile(path, dtype=np.uint32) & 0xFFFF).astype(np.int64)
+    if sky_remap:
+        lab[lab == 8] = 0
+    return lab
+
+
+def read_pred(path: Path, sky_remap: bool = True) -> np.ndarray:
+    """Predictions come either as .label files or as Pointcept's *_pred.npy."""
+    if path.suffix == ".npy":
+        return np.load(path).astype(np.int64)
+    return read_labels(path, sky_remap)
 
 
 def accumulate(conf: np.ndarray, gt: np.ndarray, pred: np.ndarray, k: int) -> None:
@@ -76,13 +86,17 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gt", type=Path, required=True, help="ground-truth label root (…/val)")
     ap.add_argument("--pred", type=Path, required=True, help="prediction label root, same layout")
-    ap.add_argument("--num-classes", type=int, default=9)
-    ap.add_argument("--ignore", type=int, nargs="*", default=[8],
-                    help="class ids excluded from the mean (default: sky)")
+    ap.add_argument("--num-classes", type=int, default=8)
+    ap.add_argument("--ignore", type=int, nargs="*", default=[],
+                    help="class ids excluded from the mean (default: none)")
+    ap.add_argument("--no-sky-remap", action="store_true",
+                    help="keep sky (8) as its own class instead of folding it into other (0), "
+                         "which the baseline does via GOOSEDataset.get_learning_map")
     ap.add_argument("--out", type=Path, default=None)
     args = ap.parse_args()
 
     k = args.num_classes
+    remap = not args.no_sky_remap
     eval_classes = [c for c in range(k) if c not in set(args.ignore)]
 
     gt_files = sorted(args.gt.rglob("*.label"))
@@ -98,9 +112,19 @@ def main() -> int:
         scenario = g.parent.name
         p = args.pred / scenario / g.name
         if not p.exists():
+            # Pointcept writes predictions flat, named after the *cloud* file:
+            # <stem>_pcl.bin_pred.npy on GOOSE-Ex, <stem>_vls128.bin_pred.npy on GOOSE.
+            stem = g.name[: -len("_goose.label")]
+            for cand in (args.pred / f"{stem}_pcl.bin_pred.npy",
+                         args.pred / f"{stem}_vls128.bin_pred.npy",
+                         args.pred / g.name):
+                if cand.exists():
+                    p = cand
+                    break
+        if not p.exists():
             missing.append(str(g.relative_to(args.gt)))
             continue
-        gt, pred = read_labels(g), read_labels(p)
+        gt, pred = read_labels(g, remap), read_pred(p, remap)
         if gt.size != pred.size:
             mismatched.append(f"{scenario}/{g.name}: gt {gt.size} vs pred {pred.size}")
             continue
