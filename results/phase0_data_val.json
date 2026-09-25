@@ -1,0 +1,346 @@
+{
+  "root": "data/gooseEx_3d_val",
+  "split": "val",
+  "frames": 407,
+  "unlabeled_frames": 0,
+  "points_total": 69472117,
+  "points_per_frame": {
+    "min": 23389,
+    "max": 338901,
+    "mean": 170693.2
+  },
+  "intensity_max": 255.0,
+  "platforms": {
+    "alice": {
+      "frames": 192,
+      "points": 51489174,
+      "scenarios": [
+        "alice_scenario02",
+        "alice_scenario06",
+        "alice_scenario08"
+      ],
+      "points_per_frame_mean": 268172.8
+    },
+    "spot": {
+      "frames": 215,
+      "points": 17982943,
+      "scenarios": [
+        "spot_scenario03",
+        "spot_scenario07",
+        "spot_scenario08"
+      ],
+      "points_per_frame_mean": 83641.6
+    }
+  },
+  "classes_present": 44,
+  "classes": [
+    {
+      "id": 31,
+      "name": "soil",
+      "points": 23055581,
+      "share": 0.331868,
+      "frames": 372
+    },
+    {
+      "id": 50,
+      "name": "low_grass",
+      "points": 13766975,
+      "share": 0.198165,
+      "frames": 266
+    },
+    {
+      "id": 8,
+      "name": "ego_vehicle",
+      "points": 13474809,
+      "share": 0.19396,
+      "frames": 329
+    },
+    {
+      "id": 23,
+      "name": "asphalt",
+      "points": 4163858,
+      "share": 0.059936,
+      "frames": 170
+    },
+    {
+      "id": 29,
+      "name": "debris",
+      "points": 3218483,
+      "share": 0.046328,
+      "frames": 138
+    },
+    {
+      "id": 27,
+      "name": "tree_crown",
+      "points": 1963296,
+      "share": 0.02826,
+      "frames": 126
+    },
+    {
+      "id": 51,
+      "name": "high_grass",
+      "points": 1520136,
+      "share": 0.021881,
+      "frames": 248
+    },
+    {
+      "id": 4,
+      "name": "obstacle",
+      "points": 1264661,
+      "share": 0.018204,
+      "frames": 336
+    },
+    {
+      "id": 17,
+      "name": "bush",
+      "points": 1085104,
+      "share": 0.015619,
+      "frames": 233
+    },
+    {
+      "id": 24,
+      "name": "gravel",
+      "points": 1068931,
+      "share": 0.015386,
+      "frames": 107
+    },
+    {
+      "id": 16,
+      "name": "forest",
+      "points": 957821,
+      "share": 0.013787,
+      "frames": 122
+    },
+    {
+      "id": 3,
+      "name": "cobble",
+      "points": 591606,
+      "share": 0.008516,
+      "frames": 85
+    },
+    {
+      "id": 40,
+      "name": "rock",
+      "points": 533487,
+      "share": 0.007679,
+      "frames": 224
+    },
+    {
+      "id": 28,
+      "name": "tree_trunk",
+      "points": 523339,
+      "share": 0.007533,
+      "frames": 196
+    },
+    {
+      "id": 38,
+      "name": "building",
+      "points": 492067,
+      "share": 0.007083,
+      "frames": 168
+    },
+    {
+      "id": 41,
+      "name": "fence",
+      "points": 290115,
+      "share": 0.004176,
+      "frames": 165
+    },
+    {
+      "id": 42,
+      "name": "guard_rail",
+      "points": 284520,
+      "share": 0.004095,
+      "frames": 60
+    },
+    {
+      "id": 57,
+      "name": "heavy_machinery",
+      "points": 271630,
+      "share": 0.00391,
+      "frames": 196
+    },
+    {
+      "id": 14,
+      "name": "person",
+      "points": 163050,
+      "share": 0.002347,
+      "frames": 355
+    },
+    {
+      "id": 34,
+      "name": "truck",
+      "points": 134021,
+      "share": 0.001929,
+      "frames": 92
+    },
+    {
+      "id": 54,
+      "name": "water",
+      "points": 128726,
+      "share": 0.001853,
+      "frames": 77
+    },
+    {
+      "id": 60,
+      "name": "barrel",
+      "points": 93021,
+      "share": 0.001339,
+      "frames": 46
+    },
+    {
+      "id": 12,
+      "name": "car",
+      "points": 80293,
+      "share": 0.001156,
+      "frames": 181
+    },
+    {
+      "id": 5,
+      "name": "leaves",
+      "points": 66210,
+      "share": 0.000953,
+      "frames": 22
+    },
+    {
+      "id": 47,
+      "name": "misc_sign",
+      "points": 55947,
+      "share": 0.000805,
+      "frames": 136
+    },
+    {
+      "id": 0,
+      "name": "undefined",
+      "points": 41027,
+      "share": 0.000591,
+      "frames": 344
+    },
+    {
+      "id": 45,
+      "name": "pole",
+      "points": 33014,
+      "share": 0.000475,
+      "frames": 168
+    },
+    {
+      "id": 59,
+      "name": "hedge",
+      "points": 27693,
+      "share": 0.000399,
+      "frames": 70
+    },
+    {
+      "id": 22,
+      "name": "curb",
+      "points": 22739,
+      "share": 0.000327,
+      "frames": 39
+    },
+    {
+      "id": 37,
+      "name": "trailer",
+      "points": 20726,
+      "share": 0.000298,
+      "frames": 71
+    },
+    {
+      "id": 6,
+      "name": "street_light",
+      "points": 18802,
+      "share": 0.000271,
+      "frames": 78
+    },
+    {
+      "id": 26,
+      "name": "rail_track",
+      "points": 17544,
+      "share": 0.000253,
+      "frames": 6
+    },
+    {
+      "id": 21,
+      "name": "sidewalk",
+      "points": 10234,
+      "share": 0.000147,
+      "frames": 16
+    },
+    {
+      "id": 58,
+      "name": "container",
+      "points": 9710,
+      "share": 0.00014,
+      "frames": 56
+    },
+    {
+      "id": 61,
+      "name": "pipe",
+      "points": 9469,
+      "share": 0.000136,
+      "frames": 23
+    },
+    {
+      "id": 11,
+      "name": "road_marking",
+      "points": 3994,
+      "share": 5.7e-05,
+      "frames": 6
+    },
+    {
+      "id": 1,
+      "name": "traffic_cone",
+      "points": 2189,
+      "share": 3.2e-05,
+      "frames": 28
+    },
+    {
+      "id": 46,
+      "name": "traffic_sign",
+      "points": 1852,
+      "share": 2.7e-05,
+      "frames": 14
+    },
+    {
+      "id": 13,
+      "name": "bicycle",
+      "points": 1594,
+      "share": 2.3e-05,
+      "frames": 23
+    },
+    {
+      "id": 55,
+      "name": "wire",
+      "points": 1481,
+      "share": 2.1e-05,
+      "frames": 22
+    },
+    {
+      "id": 10,
+      "name": "road_block",
+      "points": 1088,
+      "share": 1.6e-05,
+      "frames": 3
+    },
+    {
+      "id": 39,
+      "name": "wall",
+      "points": 1005,
+      "share": 1.4e-05,
+      "frames": 18
+    },
+    {
+      "id": 30,
+      "name": "crops",
+      "points": 263,
+      "share": 4e-06,
+      "frames": 1
+    },
+    {
+      "id": 20,
+      "name": "motorcycle",
+      "points": 6,
+      "share": 0.0,
+      "frames": 5
+    }
+  ]
+}
