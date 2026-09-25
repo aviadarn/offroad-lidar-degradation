@@ -11,6 +11,23 @@
 set -euo pipefail
 
 ROOT=${ROOT:-/workspace}
+
+# Stock PyTorch images ship without unzip, so extract with python's zipfile instead of
+# putting an apt install on the critical path.
+UNZIP() {  # archive, destination
+  python3 -c "
+import sys, zipfile, os
+archive, dest = sys.argv[1], sys.argv[2]
+with zipfile.ZipFile(archive) as z:
+    z.extractall(dest)
+# The challenge-label zip ships restrictive modes; make what we extracted readable.
+for root, dirs, files in os.walk(dest):
+    for name in dirs + files:
+        path = os.path.join(root, name)
+        os.chmod(path, os.stat(path).st_mode | 0o700)
+" "$1" "$2"
+}
+
 POINTCEPT=$ROOT/Pointcept
 DATA=$POINTCEPT/data/goose
 EXP=$POINTCEPT/exp/goose/semseg-ptv3-challenge-goose-baseline
@@ -38,7 +55,7 @@ fetch https://zenodo.org/api/records/16942462/files/challenge_labels_3d.zip/cont
 if [ ! -d "$DATA/lidar/val" ]; then
   echo "  extracting point clouds"
   for z in goose_3d_val gooseEx_3d_val; do
-    unzip -q -o "$ROOT/dl/$z.zip" -d "$ROOT/dl/$z"
+    UNZIP "$ROOT/dl/$z.zip" "$ROOT/dl/$z"
     # Both archives carry lidar/val/<scenario>/; merge them under one root.
     src=$(find "$ROOT/dl/$z" -type d -name val -path '*lidar*' | head -1)
     mkdir -p "$DATA/lidar/val"
@@ -47,7 +64,7 @@ if [ ! -d "$DATA/lidar/val" ]; then
 fi
 if [ ! -d "$DATA/labels_challenge/val" ]; then
   echo "  extracting challenge labels"
-  unzip -q -o "$ROOT/dl/challenge_labels_3d.zip" -d "$ROOT/dl/labels"
+  UNZIP "$ROOT/dl/challenge_labels_3d.zip" "$ROOT/dl/labels"
   mkdir -p "$DATA/labels_challenge"
   cp -r "$ROOT/dl/labels/val" "$DATA/labels_challenge/val"
   chmod -R u+rwX "$DATA/labels_challenge"   # the zip ships restrictive modes

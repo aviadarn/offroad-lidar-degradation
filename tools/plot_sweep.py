@@ -7,6 +7,8 @@ excavator number from the baseline run, and writes a single figure plus a tidy C
   python tools/plot_sweep.py --sweep results/sweep --baseline results/runs/baseline_fast.json \
       --out results/figures/degradation.png
 """
+from __future__ import annotations
+
 import argparse, csv, json, re
 from collections import defaultdict
 from pathlib import Path
