@@ -8,6 +8,8 @@ __pycache__/
 /checkpoints/
 *.pth
 *.onnx
+# ...except the exported model itself: it is what the Jetson engines are built from.
+!results/runs/bev/bev_unet.onnx
 *.engine
 
 # BEV cache is derived from the archives by tools/bev_cache.py; regenerate, do not ship.
