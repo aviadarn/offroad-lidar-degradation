@@ -1,0 +1,168 @@
+&&&& RUNNING TensorRT.trtexec [TensorRT v8201] # /usr/src/tensorrt/bin/trtexec --onnx=bev_unet_trained.onnx --workspace=1024 --iterations=50 --avgRuns=10 --timingCacheFile=timing.cache --saveEngine=trained_fp32.engine
+[09/26/2026-23:51:37] [I] === Model Options ===
+[09/26/2026-23:51:37] [I] Format: ONNX
+[09/26/2026-23:51:37] [I] Model: bev_unet_trained.onnx
+[09/26/2026-23:51:37] [I] Output:
+[09/26/2026-23:51:37] [I] === Build Options ===
+[09/26/2026-23:51:37] [I] Max batch: explicit batch
+[09/26/2026-23:51:37] [I] Workspace: 1024 MiB
+[09/26/2026-23:51:37] [I] minTiming: 1
+[09/26/2026-23:51:37] [I] avgTiming: 8
+[09/26/2026-23:51:37] [I] Precision: FP32
+[09/26/2026-23:51:37] [I] Calibration: 
+[09/26/2026-23:51:37] [I] Refit: Disabled
+[09/26/2026-23:51:37] [I] Sparsity: Disabled
+[09/26/2026-23:51:37] [I] Safe mode: Disabled
+[09/26/2026-23:51:37] [I] DirectIO mode: Disabled
+[09/26/2026-23:51:37] [I] Restricted mode: Disabled
+[09/26/2026-23:51:37] [I] Save engine: trained_fp32.engine
+[09/26/2026-23:51:37] [I] Load engine: 
+[09/26/2026-23:51:37] [I] Profiling verbosity: 0
+[09/26/2026-23:51:37] [I] Tactic sources: Using default tactic sources
+[09/26/2026-23:51:37] [I] timingCacheMode: global
+[09/26/2026-23:51:37] [I] timingCacheFile: timing.cache
+[09/26/2026-23:51:37] [I] Input(s)s format: fp32:CHW
+[09/26/2026-23:51:37] [I] Output(s)s format: fp32:CHW
+[09/26/2026-23:51:37] [I] Input build shapes: model
+[09/26/2026-23:51:37] [I] Input calibration shapes: model
+[09/26/2026-23:51:37] [I] === System Options ===
+[09/26/2026-23:51:37] [I] Device: 0
+[09/26/2026-23:51:37] [I] DLACore: 
+[09/26/2026-23:51:37] [I] Plugins:
+[09/26/2026-23:51:37] [I] === Inference Options ===
+[09/26/2026-23:51:37] [I] Batch: Explicit
+[09/26/2026-23:51:37] [I] Input inference shapes: model
+[09/26/2026-23:51:37] [I] Iterations: 50
+[09/26/2026-23:51:37] [I] Duration: 3s (+ 200ms warm up)
+[09/26/2026-23:51:37] [I] Sleep time: 0ms
+[09/26/2026-23:51:37] [I] Idle time: 0ms
+[09/26/2026-23:51:37] [I] Streams: 1
+[09/26/2026-23:51:37] [I] ExposeDMA: Disabled
+[09/26/2026-23:51:37] [I] Data transfers: Enabled
+[09/26/2026-23:51:37] [I] Spin-wait: Disabled
+[09/26/2026-23:51:37] [I] Multithreading: Disabled
+[09/26/2026-23:51:37] [I] CUDA Graph: Disabled
+[09/26/2026-23:51:37] [I] Separate profiling: Disabled
+[09/26/2026-23:51:37] [I] Time Deserialize: Disabled
+[09/26/2026-23:51:37] [I] Time Refit: Disabled
+[09/26/2026-23:51:37] [I] Skip inference: Disabled
+[09/26/2026-23:51:37] [I] Inputs:
+[09/26/2026-23:51:37] [I] === Reporting Options ===
+[09/26/2026-23:51:37] [I] Verbose: Disabled
+[09/26/2026-23:51:37] [I] Averages: 10 inferences
+[09/26/2026-23:51:37] [I] Percentile: 99
+[09/26/2026-23:51:37] [I] Dump refittable layers:Disabled
+[09/26/2026-23:51:37] [I] Dump output: Disabled
+[09/26/2026-23:51:37] [I] Profile: Disabled
+[09/26/2026-23:51:37] [I] Export timing to JSON file: 
+[09/26/2026-23:51:37] [I] Export output to JSON file: 
+[09/26/2026-23:51:37] [I] Export profile to JSON file: 
+[09/26/2026-23:51:37] [I] 
+[09/26/2026-23:51:37] [I] === Device Information ===
+[09/26/2026-23:51:37] [I] Selected Device: NVIDIA Tegra X1
+[09/26/2026-23:51:37] [I] Compute Capability: 5.3
+[09/26/2026-23:51:37] [I] SMs: 1
+[09/26/2026-23:51:37] [I] Compute Clock Rate: 0.9216 GHz
+[09/26/2026-23:51:37] [I] Device Global Memory: 3964 MiB
+[09/26/2026-23:51:37] [I] Shared Memory per SM: 64 KiB
+[09/26/2026-23:51:37] [I] Memory Bus Width: 64 bits (ECC disabled)
+[09/26/2026-23:51:37] [I] Memory Clock Rate: 0.01275 GHz
+[09/26/2026-23:51:37] [I] 
+[09/26/2026-23:51:37] [I] TensorRT version: 8.2.1
+[09/26/2026-23:51:39] [I] [TRT] [MemUsageChange] Init CUDA: CPU +229, GPU +0, now: CPU 248, GPU 2586 (MiB)
+[09/26/2026-23:51:39] [I] [TRT] [MemUsageSnapshot] Begin constructing builder kernel library: CPU 248 MiB, GPU 2587 MiB
+[09/26/2026-23:51:39] [I] [TRT] [MemUsageSnapshot] End constructing builder kernel library: CPU 277 MiB, GPU 2616 MiB
+[09/26/2026-23:51:39] [I] Start parsing network model
+[09/26/2026-23:51:39] [I] [TRT] ----------------------------------------------------------------
+[09/26/2026-23:51:39] [I] [TRT] Input filename:   bev_unet_trained.onnx
+[09/26/2026-23:51:39] [I] [TRT] ONNX IR version:  0.0.6
+[09/26/2026-23:51:39] [I] [TRT] Opset version:    11
+[09/26/2026-23:51:39] [I] [TRT] Producer name:    pytorch
+[09/26/2026-23:51:39] [I] [TRT] Producer version: 2.4.0
+[09/26/2026-23:51:39] [I] [TRT] Domain:           
+[09/26/2026-23:51:39] [I] [TRT] Model version:    0
+[09/26/2026-23:51:39] [I] [TRT] Doc string:       
+[09/26/2026-23:51:39] [I] [TRT] ----------------------------------------------------------------
+[09/26/2026-23:51:39] [I] Finish parsing network model
+[09/26/2026-23:51:39] [I] Loaded 38808 bytes of timing cache from timing.cache
+[09/26/2026-23:51:39] [I] [TRT] ---------- Layers Running on DLA ----------
+[09/26/2026-23:51:39] [I] [TRT] ---------- Layers Running on GPU ----------
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc1/enc1.0/Conv + /enc1/enc1.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc1/enc1.3/Conv + /enc1/enc1.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /pool/MaxPool
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc2/enc2.0/Conv + /enc2/enc2.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc2/enc2.3/Conv + /enc2/enc2.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /pool_1/MaxPool
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc3/enc3.0/Conv + /enc3/enc3.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc3/enc3.3/Conv + /enc3/enc3.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /pool_2/MaxPool
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc4/enc4.0/Conv + /enc4/enc4.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc4/enc4.3/Conv + /enc4/enc4.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up3/ConvTranspose
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up3/ConvTranspose_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc3/enc3.5/Relu_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec3/dec3.0/Conv + /dec3/dec3.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec3/dec3.3/Conv + /dec3/dec3.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up2/ConvTranspose
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up2/ConvTranspose_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc2/enc2.5/Relu_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec2/dec2.0/Conv + /dec2/dec2.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec2/dec2.3/Conv + /dec2/dec2.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up1/ConvTranspose
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /up1/ConvTranspose_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /enc1/enc1.5/Relu_output_0 copy
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec1/dec1.0/Conv + /dec1/dec1.2/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /dec1/dec1.3/Conv + /dec1/dec1.5/Relu
+[09/26/2026-23:51:39] [I] [TRT] [GpuLayer] /head/Conv
+[09/26/2026-23:51:40] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +158, GPU +148, now: CPU 443, GPU 2786 (MiB)
+[09/26/2026-23:51:42] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +241, GPU +238, now: CPU 684, GPU 3024 (MiB)
+[09/26/2026-23:51:42] [I] [TRT] Global timing cache in use. Profiling results in this builder pass will be stored.
+[09/26/2026-23:51:47] [I] [TRT] Detected 1 inputs and 1 output network tensors.
+[09/26/2026-23:51:47] [I] [TRT] Total Host Persistent Memory: 11552
+[09/26/2026-23:51:47] [I] [TRT] Total Device Persistent Memory: 21391360
+[09/26/2026-23:51:47] [I] [TRT] Total Scratch Memory: 15360000
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 2 MiB, GPU 66 MiB
+[09/26/2026-23:51:47] [I] [TRT] [BlockAssignment] Algorithm ShiftNTopDown took 1.81249ms to assign 6 blocks to 25 nodes requiring 99840000 bytes.
+[09/26/2026-23:51:47] [I] [TRT] Total Activation Memory: 99840000
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +0, now: CPU 691, GPU 3033 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +0, GPU +0, now: CPU 691, GPU 3033 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in building engine: CPU +0, GPU +32, now: CPU 0, GPU 32 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init CUDA: CPU +0, GPU +0, now: CPU 711, GPU 3054 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] Loaded engine size: 21 MiB
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +0, now: CPU 711, GPU 3054 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +1, GPU +0, now: CPU 712, GPU 3054 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +21, now: CPU 0, GPU 21 (MiB)
+[09/26/2026-23:51:47] [I] Saved 38808 bytes of timing cache to timing.cache
+[09/26/2026-23:51:47] [I] Engine built in 10.0515 sec.
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +1, GPU +0, now: CPU 654, GPU 3056 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +0, GPU +0, now: CPU 654, GPU 3056 (MiB)
+[09/26/2026-23:51:47] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +115, now: CPU 0, GPU 136 (MiB)
+[09/26/2026-23:51:47] [I] Using random values for input bev
+[09/26/2026-23:51:47] [I] Created input binding for bev with dimensions 1x5x400x400
+[09/26/2026-23:51:47] [I] Using random values for output logits
+[09/26/2026-23:51:47] [I] Created output binding for logits with dimensions 1x8x400x400
+[09/26/2026-23:51:47] [I] Starting inference
+[09/26/2026-23:51:59] [I] Warmup completed 1 queries over 200 ms
+[09/26/2026-23:51:59] [I] Timing trace has 50 queries over 10.4696 s
+[09/26/2026-23:51:59] [I] 
+[09/26/2026-23:51:59] [I] === Trace details ===
+[09/26/2026-23:51:59] [I] Trace averages of 10 runs:
+[09/26/2026-23:51:59] [I] Average on 10 runs - GPU latency: 208.248 ms - Host latency: 209.045 ms (end to end 209.056 ms, enqueue 1.2158 ms)
+[09/26/2026-23:51:59] [I] Average on 10 runs - GPU latency: 209.03 ms - Host latency: 209.827 ms (end to end 209.837 ms, enqueue 1.22253 ms)
+[09/26/2026-23:51:59] [I] Average on 10 runs - GPU latency: 208.344 ms - Host latency: 209.14 ms (end to end 209.151 ms, enqueue 1.16431 ms)
+[09/26/2026-23:51:59] [I] Average on 10 runs - GPU latency: 208.38 ms - Host latency: 209.176 ms (end to end 209.187 ms, enqueue 1.12681 ms)
+[09/26/2026-23:51:59] [I] Average on 10 runs - GPU latency: 208.917 ms - Host latency: 209.713 ms (end to end 209.723 ms, enqueue 1.1417 ms)
+[09/26/2026-23:51:59] [I] 
+[09/26/2026-23:51:59] [I] === Performance summary ===
+[09/26/2026-23:51:59] [I] Throughput: 4.77575 qps
+[09/26/2026-23:51:59] [I] Latency: min = 207.462 ms, max = 212.198 ms, mean = 209.38 ms, median = 209.235 ms, percentile(99%) = 212.198 ms
+[09/26/2026-23:51:59] [I] End-to-End Host Latency: min = 207.474 ms, max = 212.209 ms, mean = 209.391 ms, median = 209.244 ms, percentile(99%) = 212.209 ms
+[09/26/2026-23:51:59] [I] Enqueue Time: min = 1.0498 ms, max = 1.44727 ms, mean = 1.17423 ms, median = 1.16235 ms, percentile(99%) = 1.44727 ms
+[09/26/2026-23:51:59] [I] H2D Latency: min = 0.306152 ms, max = 0.310547 ms, mean = 0.308604 ms, median = 0.308594 ms, percentile(99%) = 0.310547 ms
+[09/26/2026-23:51:59] [I] GPU Compute Time: min = 206.667 ms, max = 211.401 ms, mean = 208.584 ms, median = 208.439 ms, percentile(99%) = 211.401 ms
+[09/26/2026-23:51:59] [I] D2H Latency: min = 0.486328 ms, max = 0.48999 ms, mean = 0.487837 ms, median = 0.487793 ms, percentile(99%) = 0.48999 ms
+[09/26/2026-23:51:59] [I] Total Host Walltime: 10.4696 s
+[09/26/2026-23:51:59] [I] Total GPU Compute Time: 10.4292 s
+[09/26/2026-23:51:59] [I] Explanations of the performance metrics are printed in the verbose logs.
+[09/26/2026-23:51:59] [I] 
+&&&& PASSED TensorRT.trtexec [TensorRT v8201] # /usr/src/tensorrt/bin/trtexec --onnx=bev_unet_trained.onnx --workspace=1024 --iterations=50 --avgRuns=10 --timingCacheFile=timing.cache --saveEngine=trained_fp32.engine
