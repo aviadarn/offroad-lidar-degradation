@@ -27,6 +27,8 @@ def main() -> int:
     ap.add_argument("--cell", type=float, default=bev.CELL_M)
     ap.add_argument("--extent", type=float, default=bev.EXTENT_M)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--shard", type=int, default=0, help="this worker's index, 0-based")
+    ap.add_argument("--of", type=int, default=1, help="total workers; frames are split round-robin")
     args = ap.parse_args()
 
     clouds = sorted((args.root / "lidar" / args.split).rglob("*_pcl.bin"))
@@ -34,6 +36,8 @@ def main() -> int:
         clouds = [c for c in clouds if c.parent.name.startswith(args.platform + "_")]
     if args.limit:
         clouds = clouds[: args.limit]
+    if args.of > 1:
+        clouds = clouds[args.shard :: args.of]   # round-robin so every worker sees every scenario
     if not clouds:
         print(f"no clouds under {args.root}/lidar/{args.split} for platform={args.platform}")
         return 1

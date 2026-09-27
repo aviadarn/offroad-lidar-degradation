@@ -9,3 +9,6 @@ __pycache__/
 *.pth
 *.onnx
 *.engine
+
+# BEV cache is derived from the archives by tools/bev_cache.py; regenerate, do not ship.
+/cache/

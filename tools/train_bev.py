@@ -28,7 +28,9 @@ CLASS_NAMES = ["other", "artificial_structures", "artificial_ground", "natural_g
 
 class BEVCache(Dataset):
     def __init__(self, root: Path):
-        self.files = sorted(Path(root).glob("*.npz"))
+        # Skip AppleDouble sidecars: a cache tarred on macOS carries ._X.npz next to
+        # every X.npz, and np.load treats them as pickled data and raises.
+        self.files = sorted(f for f in Path(root).glob("*.npz") if not f.name.startswith("._"))
         if not self.files:
             raise SystemExit(f"no cached frames in {root} - run tools/bev_cache.py first")
 
