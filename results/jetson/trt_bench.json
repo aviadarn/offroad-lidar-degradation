@@ -1,0 +1,47 @@
+{
+  "device": "Jetson Nano (Tegra X1, Maxwell GM20B, 128 CUDA cores, 4 GB shared)",
+  "l4t": "R32.7.1 (JetPack 4.6.1)",
+  "tensorrt": "8.2.1.8",
+  "cuda": "10.2",
+  "gpu_clock_hz": 921600000,
+  "clocks_pinned": true,
+  "input": "1x5x400x400 float32 (BEV, 0.20 m cells over +/-40 m)",
+  "model": "BEVUNet width=32, 1.93M params, opset 11",
+  "runs": {
+    "fp32": {
+      "gpu_min_ms": 207.719,
+      "gpu_max_ms": 214.022,
+      "gpu_mean_ms": 210.044,
+      "gpu_median_ms": 209.679,
+      "gpu_p99_ms": 214.022,
+      "throughput_qps": 4.74254,
+      "h2d_mean_ms": 0.309511,
+      "d2h_mean_ms": 0.491069,
+      "speedup_vs_fp32": 1.0
+    },
+    "fp16": {
+      "gpu_min_ms": 127.663,
+      "gpu_max_ms": 130.486,
+      "gpu_mean_ms": 128.573,
+      "gpu_median_ms": 128.373,
+      "gpu_p99_ms": 130.486,
+      "throughput_qps": 7.72871,
+      "h2d_mean_ms": 0.309213,
+      "d2h_mean_ms": 0.492166,
+      "speedup_vs_fp32": 1.634
+    },
+    "int8": {
+      "gpu_min_ms": 127.72,
+      "gpu_max_ms": 130.516,
+      "gpu_mean_ms": 128.627,
+      "gpu_median_ms": 128.619,
+      "gpu_p99_ms": 130.516,
+      "throughput_qps": 7.72553,
+      "h2d_mean_ms": 0.3088,
+      "d2h_mean_ms": 0.491095,
+      "native_int8": false,
+      "note": "TensorRT warns: 'Int8 support requested on hardware without native Int8 support'. The engine builds and runs at FP16 speed - Maxwell (SM 5.3) predates DP4A. No calibrator was used either, so this is not a quantised model. INT8 cannot be demonstrated on this board.",
+      "speedup_vs_fp32": 1.633
+    }
+  }
+}
